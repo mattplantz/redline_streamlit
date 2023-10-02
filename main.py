@@ -80,7 +80,7 @@ matchup_df = matchup_df[matchup_df['Score1'] > 0]
 matchup_df['Winner'] = np.where(matchup_df['Score1'] >= matchup_df['Score2'], matchup_df['Team1'], matchup_df['Team2'])
 
 stats_df = pd.DataFrame(matchup_df['Winner'].value_counts())
-stats_df = stats_df.rename(colsumn ={'Winner':'Player', 'count':'Inter-League Wins'})
+stats_df = stats_df.rename(columns ={'Winner':'Player', 'count':'Inter-League Wins'})
 def row_style(row):
     winner = 'background-color: limegreen;'
     loser = 'background-color: lightcoral;'
