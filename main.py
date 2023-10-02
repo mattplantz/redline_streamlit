@@ -6,10 +6,9 @@ import requests
 import numpy as np
 
 #Streamlit formatting section
-st.title("Red Line Data Wizard")
-st.header("Good luck nerds")
+st.title("Red Line Homepage")
+st.header("Red Line Weekly Matchups and Scores")
 matchup_df = None # need to establish this to avoid errors
-col1, col2 = st.columns(2, gap='medium')
 
 # red line section - lots of clean up to do 
 # pull in red line data
@@ -88,9 +87,7 @@ def row_style(row):
         return [winner, loser]
     else:
         return [loser, winner]
-with col1:
-  st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']), width=1024, height=768)
-with col2:
-  st.dataframe(data = stats_df)
+
+st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']), width=1024, height=768)
 
 
