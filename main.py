@@ -14,8 +14,8 @@ matchup_df = None # need to establish this to avoid errors
 # red line secrets
 swid = st.secrets("swid")
 league_id = st.secrets("league_id")
-year = t.secrets("year")
-espn_s2 = t.secrets("espn_s2")
+year = st.secrets("year")
+espn_s2 = st.secrets("espn_s2")
 
 # url for redline
 url = f"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/{league_id}"
