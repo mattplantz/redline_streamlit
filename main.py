@@ -75,7 +75,7 @@ matchup_df.replace({"Team1": manager_dict
                   , "Team2" : manager_dict}
                   , inplace = True) 
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
-for i, row in matchup_df.iterrrows():
+for i, row in matchup_df.iterrows():
   if row['Score 1'] > row['Score 2']:
     matchup_df.loc[i, 'Winner'] = matchup_df.loc[i, 'Score 1']
   elif row['Score 1'] < row['Score 2']:
