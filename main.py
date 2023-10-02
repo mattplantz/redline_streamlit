@@ -89,7 +89,7 @@ def row_style(row):
     else:
         return [loser, winner]
 with col1:
-  st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']))
+  st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']), width=1024, height=768)
 with col2:
   st.dataframe(data = stats_df)
 
