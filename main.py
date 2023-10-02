@@ -21,7 +21,7 @@ espn_s2 = st.secrets['espn']
 # url for redline
 url = f"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/{league_id}"
 week = 4 # UDPATE TO DYNAMIC -- use date function and cut offs?
-@st.cache_data
+@st.cache
 def matchup_response():
   reponse = requests.get(url, 
                                 params={"leagueId" : league_id,
