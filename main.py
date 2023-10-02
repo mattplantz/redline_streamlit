@@ -25,7 +25,7 @@ week = 4 # UDPATE TO DYNAMIC -- use date function and cut offs?
 matchup_response = requests.get(url, 
                                 params={"leagueId" : league_id,
                                        "seasonId" : year,
-                                       "matchupPeriodId" : week,
+                                       #"matchupPeriodId" : week,
                                        "view": "mMatchup"},
                                cookies={"swid" : swid,
                                        "espn_s2" : espn_s2})
