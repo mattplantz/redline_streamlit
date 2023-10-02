@@ -75,11 +75,18 @@ matchup_df.replace({"Team1": manager_dict
                   , "Team2" : manager_dict}
                   , inplace = True) 
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
+for i, row in matchup_df.iterrrows():
+  if row['Score 1'] > row['Score 2']:
+    matchup_df.loc[i, 'Winner'] = matchup_df.loc[i, 'Score 1']
+  elif row['Score 1'] < row['Score 2']:
+    matchup_df.loc[i, 'Winner'] = matchup_df.loc[i, 'Score 2']
+  else:
+    matchup_df.loc[i, 'Winner'] = 'Somehow a tie'
 def row_style(row):
     if row['Score1'] <= row['Score2']:
-        return pd.Series('background-color: red', row.index)
+        return pd.Series('background-color: lightcoral', row.index)
     else:
-        return pd.Series('background-color: green', row.index)
+        return pd.Series('background-color: limegreen', row.index)
 
 st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']))
 
