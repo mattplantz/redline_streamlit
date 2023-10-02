@@ -23,16 +23,16 @@ url = f"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/lea
 week = 4 # UDPATE TO DYNAMIC -- use date function and cut offs?
 @st.cache
 def matchup_response():
-  reponse = requests.get(url, 
+  response = requests.get(url, 
                                 params={"leagueId" : league_id,
                                        "seasonId" : year,
                                        #"matchupPeriodId" : week,
                                        "view": "mMatchup"},
                                cookies={"swid" : swid,
                                        "espn_s2" : espn_s2})
-  return reponse.json()
+  return response.json()
 
-def team_reponse():
+def team_response():
   response = requests.get(url, 
                                 params={"leagueId" : league_id,
                                        "seasonId" : year,
@@ -40,7 +40,7 @@ def team_reponse():
                                        "view": "mTeam"},
                                cookies={"swid" : swid,
                                        "espn_s2" : espn_s2},)
-  return reponse.json()
+  return response.json()
 # Transform the response into a json
 matchup_json = matchup_response()
 team_json = team_response()
