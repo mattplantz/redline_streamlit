@@ -12,12 +12,10 @@ matchup_df = None # need to establish this to avoid errors
 # red line section - lots of clean up to do 
 # pull in red line data
 # red line secrets
-# TO - DO: clean up into secrets folder in streamlit
-swid = 'AEAsEvU0TXuS0pVbOdItz8ZcqARrVKpkCZdD59oZu9etkQp%2BYkTEkcCwKqJKxNs9iGe8YUWXIOv%2F%2B7rQauONmjkbgQYgD0aQc0i6ZM2Tjj8QTVTidsVWKDLipRfUN1tLOJVbvTls7SH4WZ13beAkDnZ6YLX0Xk0l%2F4sWEAu5ST6%2FMoDnqxrtAIy3rezm0yrkHYeu9bbqQV%2Fv9A8ubdHstpvbKtcBIfm0ycW%2FhZaxEB64Lwhhc%2F2MWLqMq8NyjPZGJjjSt5g7MNl3xvvNTt2TQusu'
-league_id = '1019746952'
-year = '2023'
-espn_s2 = 'AEAsEvU0TXuS0pVbOdItz8ZcqARrVKpkCZdD59oZu9etkQp%2BYkTEkcCwKqJKxNs9iGe8YUWXIOv%2F%2B7rQauONmjkbgQYgD0aQc0i6ZM2Tjj8QTVTidsVWKDLipRfUN1tLOJVbvTls7SH4WZ13beAkDnZ6YLX0Xk0l%2F4sWEAu5ST6%2FMoDnqxrtAIy3rezm0yrkHYeu9bbqQV%2Fv9A8ubdHstpvbKtcBIfm0ycW%2FhZaxEB64Lwhhc%2F2MWLqMq8NyjPZGJjjSt5g7MNl3xvvNTt2TQusu'
-
+swid = st.secrets("swid")
+league_id = st.secrets("league_id")
+year = t.secrets("year")
+espn_s2 = t.secrets("espn_s2")
 
 # url for redline
 url = f"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/{league_id}"
