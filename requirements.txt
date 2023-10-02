@@ -3,3 +3,4 @@ openpyxl == 3.0.10
 pandas == 1.4.4
 espnfantasyfootball == 0.1.1
 requests == 2.31.0
+numpy
