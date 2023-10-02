@@ -78,10 +78,12 @@ matchup_df.replace({"Team1": manager_dict
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
 matchup_df['Winner'] = np.where(matchup_df['Score1'] >= matchup_df['Score2'], matchup_df['Team1'], matchup_df['Team2'])
 def row_style(row):
+    winner = 'limegreen'
+    loser = 'lightcoral'
     if row['Score1'] <= row['Score2']:
-        return pd.Series('background-color: lightcoral', row.index)
+        return [winner, loser]
     else:
-        return pd.Series('background-color: limegreen', row.index)
+        return [loser, winner]
 
 st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']))
 
