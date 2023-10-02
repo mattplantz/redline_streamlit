@@ -1,6 +1,12 @@
+# relevant packages
+import streamlit as st
+import pandas as pd
+import espnfantasyfootball as espn
+import requests
+import numpy as np
+
 #Streamlit formatting section
-st.title("Red Line Data Wizard")
-st.header("Red Line Weekly Matchups and Scores")
+st.title("Red Line Intra-League Wins")
 matchup_df = None # need to establish this to avoid errors
 
 # red line section - lots of clean up to do 
@@ -73,3 +79,5 @@ matchup_df['Winner'] = np.where(matchup_df['Score1'] >= matchup_df['Score2'], ma
 
 stats_df = pd.DataFrame(matchup_df['Winner'].value_counts())
 stats_df = stats_df.rename(columns ={'Winner':'Player', 'count':'Inter-League Wins'})
+
+st.dataframe(stats_df)
