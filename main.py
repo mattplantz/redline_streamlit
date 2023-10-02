@@ -75,30 +75,12 @@ matchup_df.replace({"Team1": manager_dict
                   , "Team2" : manager_dict}
                   , inplace = True) 
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
-# get last row and keep non NA
-s = matchup_df.iloc[-1].dropna()
-
-# get reference columns
-ref = matchup_df[s]
-
-# get sign of difference
-m = np.sign(matchup_df[s.index]
-            .where(ref.notna().values)
-            .astype(float)
-            .sub(ref.values, axis=0)
-           )
-
-# define colors from sign of difference
-colors = {-1: 'red', 0: 'yellow', 1: 'green'}
-
-# reindex (optional) and compute style
-style = (m.reindex_like(matchup_df)
-         .applymap(lambda x: f'background-color: {colors.get(x)}'
-                   if x in colors else None)
-         )
-
-# apply style
-matchup_df.style.apply(lambda x: style, axis=None)
+def row_style(row):
+    if if x['Score1'] <= x['Score2']:
+        return pd.Series('background-color: red', row.index)
+    else:
+        return pd.Series('background-color: green', row.index)
+df.style.apply(row_style, axis=1, subset=['Score1','Score2'])
 
 st.dataframe(data = matchup_df)
 
