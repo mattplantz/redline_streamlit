@@ -80,7 +80,7 @@ def row_style(row):
         return pd.Series('background-color: red', row.index)
     else:
         return pd.Series('background-color: green', row.index)
-df.style.apply(row_style, axis=1, subset=['Score1','Score2'])
+matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2'])
 
 st.dataframe(data = matchup_df)
 
