@@ -76,6 +76,6 @@ matchup_df.replace({"Team1": manager_dict
                   , inplace = True) 
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
 
-st.dataframe(data = matchup_df, hide_index = True)
+st.dataframe(data = matchup_df)
 
 
