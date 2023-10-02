@@ -9,6 +9,7 @@ import numpy as np
 st.title("Red Line Data Wizard")
 st.header("Good luck nerds")
 matchup_df = None # need to establish this to avoid errors
+col1, col2 = st.columns(2, gap='medium')
 
 # red line section - lots of clean up to do 
 # pull in red line data
@@ -77,6 +78,9 @@ matchup_df.replace({"Team1": manager_dict
                   , inplace = True) 
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
 matchup_df['Winner'] = np.where(matchup_df['Score1'] >= matchup_df['Score2'], matchup_df['Team1'], matchup_df['Team2'])
+
+stats_df = pd.DataFrame(matchup_df['Winner'].value_counts())
+stats_df = stats_df.rename(colsumn ={'Winner':'Player', 'count':'Inter-League Wins'})
 def row_style(row):
     winner = 'background-color: limegreen;'
     loser = 'background-color: lightcoral;'
@@ -84,7 +88,9 @@ def row_style(row):
         return [winner, loser]
     else:
         return [loser, winner]
-
-st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']))
+with col1:
+  st.dataframe(data = matchup_df.style.apply(row_style, axis=1, subset=['Score1','Score2']))
+with col2:
+  st.dataframe(data = stats_df)
 
 
