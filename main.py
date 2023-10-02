@@ -76,7 +76,7 @@ matchup_df.replace({"Team1": manager_dict
                   , inplace = True) 
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
 def row_style(row):
-    if x['Score1'] <= x['Score2']:
+    if row['Score1'] <= row['Score2']:
         return pd.Series('background-color: red', row.index)
     else:
         return pd.Series('background-color: green', row.index)
