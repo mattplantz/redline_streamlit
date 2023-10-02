@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import espnfantasyfootball as espn
 import requests
+import numpy as np
 
 #Streamlit formatting section
 st.title("Red Line Data Wizard")
@@ -75,13 +76,7 @@ matchup_df.replace({"Team1": manager_dict
                   , "Team2" : manager_dict}
                   , inplace = True) 
 matchup_df = matchup_df[matchup_df['Score1'] > 0]
-for i, row in matchup_df.iterrows():
-  if row.loc[i, 'Score1'] > row.loc[i, 'Score2']:
-    matchup_df.loc[i, 'Winner'] = matchup_df.loc[i, 'Team1']
-  elif row['Score1'] < row['Score2']:
-    matchup_df.loc[i, 'Winner'] = matchup_df.loc[i, 'Team2']
-  else:
-    matchup_df.loc[i, 'Winner'] = 'Somehow a tie'
+matchup_df['Winner'] = np.where(matchup_df['Score1'] >= matchup_df['Score2'], matchup_df['Team1'], matchup_df['Team2'])
 def row_style(row):
     if row['Score1'] <= row['Score2']:
         return pd.Series('background-color: lightcoral', row.index)
