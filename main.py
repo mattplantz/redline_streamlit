@@ -21,26 +21,29 @@ espn_s2 = st.secrets['espn']
 # url for redline
 url = f"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/{league_id}"
 week = 4 # UDPATE TO DYNAMIC -- use date function and cut offs?
-
-matchup_response = requests.get(url, 
+@st.cache_data
+def matchup_response():
+  reponse = requests.get(url, 
                                 params={"leagueId" : league_id,
                                        "seasonId" : year,
                                        #"matchupPeriodId" : week,
                                        "view": "mMatchup"},
                                cookies={"swid" : swid,
                                        "espn_s2" : espn_s2})
+  return reponse.json()
 
-team_response = requests.get(url, 
+def team_reponse():
+  response = requests.get(url, 
                                 params={"leagueId" : league_id,
                                        "seasonId" : year,
                                        "matchupPeriodId" : week,
                                        "view": "mTeam"},
                                cookies={"swid" : swid,
                                        "espn_s2" : espn_s2},)
-
+  return reponse.json()
 # Transform the response into a json
-matchup_json = matchup_response.json()
-team_json = team_response.json()
+matchup_json = matchup_response()
+team_json = team_response()
 # Transform both of the json outputs into DataFrames
 matchup_df = pd.json_normalize(matchup_json['schedule'])
 team_df = pd.json_normalize(team_json['teams'])
